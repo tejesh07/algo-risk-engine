@@ -1,0 +1,11 @@
+# Python Environment Isolation
+backend/venv/
+backend/__pycache__/
+backend/.env
+
+# Node/React Dependencies
+frontend/node_modules/
+frontend/dist/
+
+# OS Metadata Files
+.DS_Store
