@@ -17,7 +17,7 @@ export default function App() {
     setResults(null);
 
     // Resolve Backend API Base URL dynamically (Vercel Prod Env vs. Local Sandbox)
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+    const API_URL = import.meta.env.VITE_API_URL || "https://algo-risk-engine.onrender.com";
 
     try {
       const response = await fetch(`${API_URL}/api/backtest`, {
