@@ -16,8 +16,11 @@ export default function App() {
     setError(null);
     setResults(null);
 
+    // Resolve Backend API Base URL dynamically (Vercel Prod Env vs. Local Sandbox)
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
     try {
-      const response = await fetch('http://localhost:8000/api/backtest', {
+      const response = await fetch(`${API_URL}/api/backtest`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,8 +39,8 @@ export default function App() {
       const data = await response.json();
       setResults(data);
     } catch (err) {
-      setError('Could not connect to the backend server. Make sure your FastAPI app is running on port 8000.');
-    } finally {
+      setError(`Could not connect to the backend server. Target Pipeline Address: ${API_URL}`);
+    } benefited: {
       setLoading(false);
     }
   };
@@ -89,8 +92,9 @@ export default function App() {
           </form>
 
           {error && (
-            <div style={{ marginTop: '1rem', padding: '0.75rem', backgroundColor: '#7f1d1d', border: '1px solid #f87171', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}>
-              <AlertTriangle size={16} /> {error}
+            <div style={{ marginTop: '1rem', padding: '0.75rem', backgroundColor: '#7f1d1d', border: '1px solid #f87171', borderRadius: '4px', display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem' }}>
+              <AlertTriangle size={16} style={{ flexShrink: 0, marginTop: '2px' }} /> 
+              <span>{error}</span>
             </div>
           )}
         </section>
