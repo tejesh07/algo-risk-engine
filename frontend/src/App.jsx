@@ -40,7 +40,7 @@ export default function App() {
       setResults(data);
     } catch (err) {
       setError(`Could not connect to the backend server. Target Pipeline Address: ${API_URL}`);
-    } benefited: {
+    } finally: {
       setLoading(false);
     }
   };
